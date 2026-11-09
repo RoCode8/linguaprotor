@@ -1,0 +1,51 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/Azure/azure-dev/main/schemas/v1.0/azure.yaml.json
+#
+# Azure Developer CLI project definition. See docs/infrastructure.md.
+#   azd up        = provision (infra/main.bicep) + deploy (infra/app/*.bicep)
+#   azd down --purge   removes everything, including soft-deleted AI accounts
+
+name: linguaproctor
+metadata:
+  template: linguaproctor@1.0.0
+
+requiredVersions:
+  # Revision-based Container Apps deployment (infra/app/<service>.bicep).
+  azd: ">= 1.22.1"
+
+infra:
+  provider: bicep
+  path: infra
+  module: main
+
+services:
+  api:
+    project: .
+    language: python
+    host: containerapp
+    module: app/api
+    docker:
+      path: ./Dockerfile
+      context: .
+      target: api
+      remoteBuild: true
+  dashboard:
+    project: .
+    language: python
+    host: containerapp
+    module: app/dashboard
+    docker:
+      path: ./Dockerfile
+      context: .
+      target: dashboard
+      remoteBuild: true
+
+hooks:
+  postprovision:
+    posix:
+      shell: sh
+      run: ./infra/scripts/write-env.sh
+      continueOnError: true
+    windows:
+      shell: pwsh
+      run: ./infra/scripts/write-env.ps1
+      continueOnError: true

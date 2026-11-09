@@ -1,0 +1,26 @@
+[
+  {
+    "grade_band": "Distinction (90-100%)",
+    "target_score": 96.0,
+    "description": "Exemplary legal translation demonstrating native Arabic syntactic elegance and accurate statutory terminology.",
+    "sample_id": "eval_01"
+  },
+  {
+    "grade_band": "Proficient (75-89%)",
+    "target_score": 82.0,
+    "description": "Good translation with valid regional terminology alternatives and minor stylistic infelicities.",
+    "sample_id": "eval_02"
+  },
+  {
+    "grade_band": "Borderline / Needs Review (60-74%)",
+    "target_score": 63.0,
+    "description": "Partial translation containing minor omissions but no catastrophic distortion of meaning.",
+    "sample_id": "eval_03"
+  },
+  {
+    "grade_band": "Fail (<60%)",
+    "target_score": 38.0,
+    "description": "Unacceptable translation with inverted financial instructions and critical semantic failure.",
+    "sample_id": "eval_05"
+  }
+]

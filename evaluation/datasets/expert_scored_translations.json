@@ -1,0 +1,84 @@
+[
+  {
+    "id": "eval_01",
+    "domain": "legal",
+    "difficulty": "C1",
+    "source_text": "The licensee shall promptly notify the competent licensing authority in writing of any material alteration to its corporate structure, capital composition, or directorship within thirty days of such occurrence.",
+    "candidate_translation": "يجب على المرخص له إخطار سلطة الترخيص المختصة كتابةً ودون إبطاء بأي تغيير جوهري يطرأ على هيكله المؤسسي أو تركيبة رأس ماله أو مجلس إدارته خلال ثلاثين يوماً من تاريخ وقوعه.",
+    "expert_scores": {
+      "accuracy": 5.0,
+      "completeness": 5.0,
+      "terminology": 5.0,
+      "fluency": 5.0
+    },
+    "expected_verdicts": {
+      "competent licensing authority": "سلطة الترخيص المختصة"
+    },
+    "category": "perfect_c1_legal"
+  },
+  {
+    "id": "eval_02",
+    "domain": "legal",
+    "difficulty": "C1",
+    "source_text": "Failure to comply with the statutory disclosure requirements within the stipulated timeframe shall render the contract null and void ab initio.",
+    "candidate_translation": "إن عدم الامتثال لمتطلبات الإفصاح القانونية خلال الإطار الزمني المحدد يجعل العقد باطلاً بطلاناً مطلقاً من الأساس.",
+    "expert_scores": {
+      "accuracy": 4.8,
+      "completeness": 5.0,
+      "terminology": 4.8,
+      "fluency": 4.7
+    },
+    "expected_verdicts": {
+      "null and void ab initio": "باطلاً بطلاناً مطلقاً من الأساس"
+    },
+    "category": "valid_alternative_legal"
+  },
+  {
+    "id": "eval_03",
+    "domain": "legal",
+    "difficulty": "C1",
+    "source_text": "The arbitration tribunal shall have the exclusive competence to rule on its own jurisdiction, including any objections with respect to the existence or validity of the arbitration agreement.",
+    "candidate_translation": "يكون لهيئة التحكيم اختصاص حصري في البت في صلاحيتها بما في ذلك وجود الاتفاق.",
+    "expert_scores": {
+      "accuracy": 3.0,
+      "completeness": 2.5,
+      "terminology": 3.5,
+      "fluency": 3.2
+    },
+    "notes": "Omitted 'or validity of the arbitration agreement' and weakened terminology.",
+    "category": "omission_defect"
+  },
+  {
+    "id": "eval_04",
+    "domain": "medical",
+    "difficulty": "B2",
+    "source_text": "Patients presenting with persistent cephalalgia and transient visual impairment should undergo immediate non-contrast cranial computed tomography.",
+    "candidate_translation": "يجب على المرضى الذين يعانون من صداع مستمر واضطراب بصري عابر الخضوع فوراً للتصوير المقطعي المحوسب للجمجمة دون صبغة.",
+    "expert_scores": {
+      "accuracy": 5.0,
+      "completeness": 5.0,
+      "terminology": 5.0,
+      "fluency": 4.8
+    },
+    "expected_verdicts": {
+      "cephalalgia": "صداع",
+      "non-contrast": "دون صبغة"
+    },
+    "category": "medical_b2"
+  },
+  {
+    "id": "eval_05",
+    "domain": "financial",
+    "difficulty": "C2",
+    "source_text": "The central depository shall debit the settlement account against irrevocable delivery versus payment instructions.",
+    "candidate_translation": "يقوم المركز بإيداع الحساب مقابل تعليمات الدفع.",
+    "expert_scores": {
+      "accuracy": 1.5,
+      "completeness": 2.0,
+      "terminology": 1.5,
+      "fluency": 2.5
+    },
+    "notes": "Severe mistranslation: 'debit' translated as 'deposit' (إيداع), missed 'delivery versus payment'.",
+    "category": "critical_mistranslation"
+  }
+]

@@ -1,0 +1,82 @@
+name: CI
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    name: Lint, unit, API and infrastructure tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -e ".[dev,dashboard]"
+
+      - name: Ruff
+        run: ruff check src/ tests/
+
+      - name: Bicep build + lint (lint findings are errors, see infra/bicepconfig.json)
+        run: |
+          az bicep install
+          for f in infra/main.bicep infra/app/*.bicep; do az bicep build --file "$f" --stdout > /dev/null; done
+
+      - name: Pytest (no Azure credentials required; includes infra contract tests)
+        run: pytest tests/ -v --cov=src
+
+  regression:
+    name: Expert regression suite (live Azure OpenAI)
+    needs: test
+    # Runs only when OIDC federation is configured (see docs/infrastructure.md).
+    if: vars.AZURE_CLIENT_ID != ''
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      - run: pip install -e .
+
+      - name: Azure login (OIDC — no stored secrets)
+        uses: azure/login@v2
+        with:
+          client-id: ${{ vars.AZURE_CLIENT_ID }}
+          tenant-id: ${{ vars.AZURE_TENANT_ID }}
+          subscription-id: ${{ vars.AZURE_SUBSCRIPTION_ID }}
+
+      - name: Run regression suite (Entra ID auth via the Azure CLI credential)
+        env:
+          AZURE_OPENAI_ENDPOINT: ${{ vars.AZURE_OPENAI_ENDPOINT }}
+        run: python -m evaluation.regression_tests
+
+  container-images:
+    name: Build container images
+    needs: test
+    runs-on: ubuntu-latest
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: docker/setup-buildx-action@v3
+      - name: Build api and dashboard targets
+        run: |
+          docker build --target api -t linguaproctor-api:ci .
+          docker build --target dashboard -t linguaproctor-dashboard:ci .

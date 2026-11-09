@@ -1,0 +1,19 @@
+# Keep the build context small and free of local state or credentials.
+.git
+.github
+.venv
+.env
+.env.*
+.azure
+**/__pycache__
+.pytest_cache
+.ruff_cache
+.mypy_cache
+infra
+docs
+tests
+evaluation
+# Personal application files: never needed by the app, keep them out of ACR uploads
+proposal
+*.pdf
+*.docx

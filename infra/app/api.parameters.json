@@ -1,0 +1,25 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "environmentName": { "value": "${AZURE_ENV_NAME}" },
+    "location": { "value": "${AZURE_LOCATION}" },
+    "name": { "value": "${SERVICE_API_NAME}" },
+    "imageName": { "value": "${SERVICE_API_IMAGE_NAME}" },
+    "identityName": { "value": "${SERVICE_API_IDENTITY_NAME}" },
+    "containerRegistryName": { "value": "${AZURE_CONTAINER_REGISTRY_NAME}" },
+    "containerAppsEnvironmentName": { "value": "${AZURE_CONTAINER_ENVIRONMENT_NAME}" },
+    "externalIngress": { "value": "${SERVICE_API_EXTERNAL_INGRESS}" },
+    "openAiEndpoint": { "value": "${AZURE_OPENAI_ENDPOINT}" },
+    "openAiApiVersion": { "value": "${AZURE_OPENAI_API_VERSION}" },
+    "openAiChatDeployment": { "value": "${AZURE_OPENAI_CHAT_DEPLOYMENT}" },
+    "openAiEmbeddingDeployment": { "value": "${AZURE_OPENAI_EMBEDDING_DEPLOYMENT}" },
+    "openAiChatReasoningModel": { "value": "${AZURE_OPENAI_CHAT_REASONING_MODEL}" },
+    "speechEndpoint": { "value": "${AZURE_SPEECH_ENDPOINT}" },
+    "speechRegion": { "value": "${AZURE_SPEECH_REGION}" },
+    "cosmosEndpoint": { "value": "${COSMOS_ENDPOINT}" },
+    "cosmosDatabaseName": { "value": "${COSMOS_DATABASE_NAME}" },
+    "cosmosAuditContainer": { "value": "${COSMOS_AUDIT_CONTAINER}" },
+    "applicationInsightsConnectionString": { "value": "${APPLICATIONINSIGHTS_CONNECTION_STRING}" }
+  }
+}

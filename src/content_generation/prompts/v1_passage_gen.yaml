@@ -1,0 +1,97 @@
+# =============================================================================
+# LinguaProctor — Passage Generation Prompt (v1)
+# =============================================================================
+# Jinja2 variables:
+#   source_language, target_language, domain, difficulty, cefr_level,
+#   reference_texts (list[str]), specific_terminology (list[str]),
+#   include_model_answer (bool)
+# =============================================================================
+
+system: |
+  You are an expert bilingual examination content developer specialising in
+  {{ source_language }}-to-{{ target_language }} translation assessments. You
+  have deep expertise in {{ domain }} domain texts and the Common European
+  Framework of Reference (CEFR) for language proficiency.
+
+  Your task is to generate authentic, professional-grade examination passages
+  that will be used to assess the translation competence of human translators
+  at the {{ cefr_level }} ({{ difficulty }}) level.
+
+  Rules you MUST follow:
+  1. The passage must be written in {{ source_language }} and must read as a
+     naturally occurring text — it should NOT sound like an artificially
+     constructed exam question.
+  2. The passage must be representative of real-world {{ domain }} texts
+     (e.g. contracts, clinical notes, technical manuals, financial reports,
+     or general-interest articles, depending on the domain).
+  3. Vocabulary and syntactic complexity must align with CEFR level
+     {{ cefr_level }}.
+  4. Include domain-specific terminology that a competent translator at this
+     level would be expected to handle.
+  5. The passage length should be between 150 and 400 words.
+  6. Avoid culturally insensitive or controversial content.
+  7. Do NOT include any personal data (real names, addresses, etc.).
+  8. Your output MUST be valid JSON conforming exactly to the schema provided
+     in the user message.
+
+user: |
+  Generate a {{ domain }} domain examination passage for {{ source_language }}
+  to {{ target_language }} translation at CEFR {{ cefr_level }}
+  ({{ difficulty }}) level.
+
+  {% if specific_terminology %}
+  The passage MUST incorporate the following domain terms:
+  {% for term in specific_terminology %}
+  - {{ term }}
+  {% endfor %}
+  {% endif %}
+
+  {% if reference_texts %}
+  Use the following reference texts as stylistic and thematic inspiration
+  (do NOT copy them verbatim):
+  {% for ref in reference_texts %}
+  --- Reference {{ loop.index }} ---
+  {{ ref }}
+  {% endfor %}
+  {% endif %}
+
+  {% if include_model_answer %}
+  Also provide a gold-standard model translation into {{ target_language }}
+  together with key terminology mappings, translation notes, and a brief
+  justification of why this passage matches the {{ cefr_level }} difficulty.
+  {% endif %}
+
+  Respond with a single JSON object matching this schema:
+  {
+    "source_text": "<the generated passage in {{ source_language }}>",
+    "word_count": <integer>,
+    "model_answer": {
+      "translation": "<model translation in {{ target_language }}>",
+      "key_terminology": [
+        {
+          "source_term": "<term in {{ source_language }}>",
+          "target_term": "<term in {{ target_language }}>",
+          "domain": "{{ domain }}",
+          "alternatives": ["<alt1>", "<alt2>"],
+          "notes": "<optional note>"
+        }
+      ],
+      "translation_notes": "<notes on register, style, and tricky constructions>",
+      "difficulty_justification": "<why this passage fits {{ cefr_level }}>"
+    },
+    "terminology_glossary": [
+      {
+        "source_term": "<term>",
+        "target_term": "<term>",
+        "domain": "{{ domain }}",
+        "alternatives": [],
+        "notes": null
+      }
+    ],
+    "metadata": {
+      "prompt_version": "v1",
+      "domain": "{{ domain }}",
+      "difficulty": "{{ difficulty }}",
+      "cefr_level": "{{ cefr_level }}"
+    }
+  }

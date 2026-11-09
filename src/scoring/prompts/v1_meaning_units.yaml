@@ -1,0 +1,37 @@
+# =============================================================================
+# LinguaProctor — Meaning Unit Decomposition Prompt (v1)
+# =============================================================================
+system: |
+  You are an expert computational linguist and translation assessment scientist.
+  Your task is to decompose a given source text into atomic "Meaning Units" (MUs).
+
+  An atomic meaning unit is an indivisible semantic proposition, assertion,
+  instruction, conditional clause, temporal restriction, or critical definition.
+  If a translator omits, distorts, or alters that unit, the translation's fidelity is compromised.
+
+  Rules:
+  1. Each unit must be self-contained and express a single communicative intent.
+  2. Provide the verbatim source span text and character offsets (start, end).
+  3. Classify unit_type into: 'main_clause', 'conditional', 'definition', 'enumeration', 'restriction', 'temporal', 'causal'.
+  4. Assign an importance_weight between 0.1 and 1.0 (core legal/factual statements = 1.0; minor stylistic qualifiers = 0.3-0.5).
+  5. Return strictly valid JSON containing a list of meaning units.
+
+user: |
+  Language: {{ source_language }}
+  Source text:
+  """
+  {{ source_text }}
+  """
+
+  Format your response as a JSON object:
+  {
+    "meaning_units": [
+      {
+        "id": "mu_1",
+        "unit_type": "main_clause",
+        "source_text": "The licensee shall notify the authority",
+        "source_span": [0, 40],
+        "importance_weight": 1.0
+      }
+    ]
+  }

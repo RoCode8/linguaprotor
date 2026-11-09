@@ -1,0 +1,12 @@
+{
+  "appContainerApps": "ca-",
+  "appManagedEnvironments": "cae-",
+  "cognitiveServicesOpenAI": "cog-oai-",
+  "cognitiveServicesSpeech": "cog-spch-",
+  "containerRegistryRegistries": "cr",
+  "documentDBDatabaseAccounts": "cosmos-",
+  "insightsComponents": "appi-",
+  "managedIdentityUserAssignedIdentities": "id-",
+  "operationalInsightsWorkspaces": "log-",
+  "resourcesResourceGroups": "rg-"
+}

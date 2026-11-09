@@ -1,0 +1,28 @@
+{
+  "$schema": "https://aka.ms/bicep/config.schema.json",
+  "analyzers": {
+    "core": {
+      "enabled": true,
+      "rules": {
+        "outputs-should-not-contain-secrets": { "level": "error" },
+        "secure-secrets-in-params": { "level": "error" },
+        "secure-parameter-default": { "level": "error" },
+        "protect-commandtoexecute-secrets": { "level": "error" },
+        "no-hardcoded-env-urls": { "level": "error" },
+        "no-hardcoded-location": { "level": "error" },
+        "explicit-values-for-loc-params": { "level": "error" },
+        "no-unused-params": { "level": "error" },
+        "no-unused-vars": { "level": "error" },
+        "no-unused-existing-resources": { "level": "error" },
+        "use-recent-api-versions": { "level": "error" },
+        "use-resource-id-functions": { "level": "error" },
+        "use-stable-resource-identifiers": { "level": "error" },
+        "use-secure-value-for-secure-inputs": { "level": "error" },
+        "prefer-unquoted-property-names": { "level": "error" },
+        "simplify-interpolation": { "level": "error" },
+        "use-parent-property": { "level": "error" },
+        "artifacts-parameters": { "level": "off" }
+      }
+    }
+  }
+}
