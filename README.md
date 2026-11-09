@@ -13,7 +13,7 @@
 
 ## 🌟 Key Differentiators & JD Alignment
 
-| Requirement in Upwork Job Description | LinguaProctor Solution |
+| Requirements | LinguaProctor Solution |
 |---|---|
 | **Multilingual AI Content Generation** | Generates CEFR-calibrated (B2/C1/C2) translation passages from legislation/reference texts with metadata, model answers, glossary extraction, and automated difficulty/duplication validation. |
 | **Rubric-Based Written Translation Scoring** | Evaluates **Accuracy, Completeness, Terminology, and Fluency** using **Meaning-Unit Decomposition** rather than string-matching, providing verbatim evidence citations for every deduction. |
