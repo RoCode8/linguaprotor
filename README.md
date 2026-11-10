@@ -7,11 +7,9 @@
 [![Azure AI Speech](https://img.shields.io/badge/Azure-AI%20Speech-0078D4.svg)](https://azure.microsoft.com/en-us/products/ai-services/speech-services/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-> **Enterprise-grade, explainable assessment platform for Written Translation and Oral Interpretation (English ↔ Arabic), featuring atomic Meaning-Unit decomposition, valid regional alternative recognition, Azure Speech processing, and confidence-gated Human-in-the-Loop review.**
-
 ---
 
-## 🌟 Key Differentiators & JD Alignment
+## 🌟 Key Differentiators
 
 | Requirements | LinguaProctor Solution |
 |---|---|
