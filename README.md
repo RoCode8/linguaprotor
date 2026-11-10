@@ -9,7 +9,7 @@
 
 ---
 
-## 🌟 Key Differentiators
+## 🌟 Key Differentiators 
 
 | Requirements | LinguaProctor Solution |
 |---|---|
